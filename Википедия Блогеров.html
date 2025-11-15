@@ -1,0 +1,543 @@
+<!DOCTYPE html>
+<html lang="ru">
+  <meta charset="UTF-8">
+<head>
+  <title>Википедия Блогеров И Певцов</title>
+  <style>
+    #SOS{position: fixed; top: 0; right: 0;}
+    #POPO{color:black; }
+    body {
+      font-family: Arial, sans-serif;
+      padding: 20px;
+      background: url(https://media.istockphoto.com/id/1325693330/ru/%D0%B2%D0%B8%D0%B4%D0%B5%D0%BE/4k-%D0%B1%D1%83%D0%BC%D0%B0%D0%B3%D0%B8-%D0%BD%D1%83%D0%BB%D1%8F-%D0%BD%D0%B0%D0%BB%D0%BE%D0%B6%D0%B5%D0%BD%D0%B8%D1%8F-%D1%84%D0%BE%D0%BD-%D1%87%D0%B5%D1%80%D0%BD%D0%BE-%D0%B1%D0%B5%D0%BB%D0%BE%D0%B9-%D0%BF%D0%B5%D1%82%D0%BB%D0%B8-%D0%B0%D0%BD%D0%B8%D0%BC%D0%B0%D1%86%D0%B8%D0%B8-%D0%B0%D0%B1%D1%81%D1%82%D1%80%D0%B0%D0%BA%D1%82%D0%BD%D0%B0%D1%8F-%D0%BD%D0%B0%D0%BA%D0%BB%D0%B0%D0%B4%D0%BA%D0%B0-%D1%81%D1%82%D0%B0%D1%82%D0%B8%D1%87%D0%B5%D1%81%D0%BA%D0%B0%D1%8F.jpg?s=640x640&k=20&c=j9btWOXOemHiXFP1AB0F-n6kHBePItWl0vqUkwyyn5Y=);
+      background-repeat: repeat;
+      background-position: center;
+      background-size: cover;
+      color: #000;
+      transition: background 0.3s, color 0.3s;
+    }
+    h1 { margin-bottom: 10px; }
+    #controls { display: flex; gap: 10px; align-items: center; margin-bottom: 15px; flex-wrap: wrap; }
+    #search-input { padding: 10px; width: 100%; max-width: 400px; font-size: 16px; border: 1px solid #ccc; border-radius: 5px; }
+    button { padding: 8px 12px; border: none; border-radius: 6px; background: #3478f6; color: white; cursor: pointer; font-size: 14px; }
+    button.secondary { background: #6c757d; }
+    h2 { margin-top: 40px; border-bottom: 2px solid #ccc; padding-bottom: 10px; }
+    .blogger-list { display: flex; flex-wrap: wrap; gap: 20px; margin-top: 20px; }
+    .blogger-card { background: white; border: 1px solid #ddd; border-radius: 8px; width: 220px; padding: 10px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); text-align: center; display: flex; flex-direction: column; gap: 8px; }
+    .blogger-card img { max-width: 100%; border-radius: 5px; height: 120px; object-fit: cover; }
+    .blogger-card h3 { margin: 0; font-size: 18px; }
+    .blogger-card p { font-size: 14px; color: #555; margin: 0; }
+    .card-actions { margin-top: auto; display: flex; gap: 8px; justify-content: center; flex-wrap: wrap; }
+    .like-btn { padding: 4px 8px; border-radius: 5px; border: 1px solid #ccc; background: #f0f0f0; cursor: pointer; }
+    #premium { margin-top: 30px; background: #fffbea; border: 1px solid #f0e6a8; padding: 12px; border-radius: 8px; max-width: 600px; }
+    #auth-section { margin-top: 40px; background: #fff; padding: 15px; border-radius: 8px; max-width: 400px; }
+    #auth-section input { width: 90%; padding: 8px; margin: 5px 0; border: 1px solid #ccc; border-radius: 5px; }
+    #profile { background: #e9f5ff; padding: 12px; border-radius: 8px; }
+    footer { margin-top: 50px; text-align: center; color: #777; }
+
+    /* Темная тема */
+    body.dark-theme { background: #121212; color: #f5f5f5; }
+    body.dark-theme .blogger-card { background: #1e1e1e; border-color: #333; }
+    body.dark-theme #premium, body.dark-theme #auth-section { background: #2c2c2c; border-color: #444; }
+    body.dark-theme input, body.dark-theme button { background: #2c2c2c; color: #f5f5f5; border-color: #555; }
+    body.dark-theme a { color: #4ea8ff; }
+    body.dark-theme footer { color: #aaa; }
+  </style>
+</head>
+<body>
+  <a id="SOS" href="file:///C:/Users/Joris/Desktop/%D0%94%D0%B0%D0%BD%D0%BD%D1%8B%D0%B5/...-....html">WIKI-BOT</a>
+  <a id="POPO" href="file:///C:/Users/Joris/Desktop/%D0%94%D0%B0%D0%BD%D0%BD%D1%8B%D0%B5/%D0%91%D0%BB%D0%BE%D0%B3%D0%B5%D1%80%D1%8B%20%D0%91%D0%B8%D0%BE%D0%B3%D1%80%D0%B0%D1%84.html">Биография Всех Блогеров и Певцов</a>
+
+  <p>
+   На Сайте можно Найти Разных Блогеров И Певцов Твоего вкуса 😋 и твоей любимой тематики
+   Ты даже можешь подписать на (Wiki Plus-💎) что бы знать больше информации о твоих любимых блогерах
+   здесь есть с разных стран популярные лестплейщики и блогеры на твой вкус 🎥-блогеры📱-стримеры💻-лестплейщики 🎤-Певцы
+    Есть даже Искуствунный интелект который говрит про блогеров(🤖)
+    Желаю Тебе хорошего дня 🍀
+
+
+  </p>
+  <p>
+    Главный Разработчик - Джамал (👨‍💻)
+    Структура Сайта,CSS- ChatGpt (🤖) 
+    Идеалист- Помощница - 𝕭𝖞𝖚𝖙𝖙𝖎𝖓𝖔𝖛𝖊 (👩)
+  </p>
+
+<h1>Википедия Блогеров</h1>
+
+<div id="controls">
+  <input type="text" id="search-input" placeholder="Поиск блогеров по имени...">
+  <button id="repeat-voice" class="secondary">🔊 Повторить приветствие</button>
+  <button id="toggle-theme" class="secondary">🌓 Тёмная тема</button>
+</div>
+
+<section>
+  <h2>Популярные блогеры</h2>
+  <div class="blogger-list" id="popular-list"></div>
+</section>
+
+<section>
+  <h2>Рекомендуемые блогеры</h2>
+  <div class="blogger-list" id="recommended-list"></div>
+</section>
+
+<section id="auth-section">
+  <h2>Регистрация / Вход</h2>
+  <div id="auth-forms">
+    <div id="register-form">
+      <h3>Регистрация</h3>
+      <input type="text" id="reg-username" placeholder="Логин"><br>
+      <input type="password" id="reg-password" placeholder="Пароль"><br>
+      <button onclick="registerUser()">Зарегистрироваться</button>
+    </div>
+
+    <div id="login-form" style="margin-top:20px;">
+      <h3>Вход</h3>
+      <input type="text" id="login-username" placeholder="Логин"><br>
+      <input type="password" id="login-password" placeholder="Пароль"><br>
+      <button onclick="loginUser()">Войти</button>
+    </div>
+  </div>
+
+  <div id="profile" style="display:none; margin-top:20px;">
+    <h3>Привет, <span id="profile-name"></span>!</h3>
+    <button onclick="logoutUser()" class="secondary">Выйти</button>
+  </div>
+</section>
+
+<div id="premium"></div>
+
+<footer>
+  <p>&copy; 2025 Википедия Блогеров И Певцов</p>
+</footer>
+
+<script>
+  const popularBloggers = [
+    { name: "Ивангай", image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRR-n5lBPpxrKDgEFlkL4Jh-N1QGEq1EL2m6A&s", link: "#", country: "Украина", platform: "YouTube", followers: "16M+" },
+    { name: "Мармок", image: "https://yt3.googleusercontent.com/rufoth8eb6DCjhFsN8Imt0CT9Rk4rcEI5ZwJ_PjiXdNWpw3SzzfvUtTiB3Y3xBeNJ7vVjLs1OQ=s900-c-k-c0x00ffffff-no-rj", link: "#", country: "Латвия", platform: "YouTube", followers: "10M+" },
+     { name: "Хабиб", image: "https://s.afisha.ru/mediastorage/f7/1c/07905beeabc34c6394f0111d1cf7.jpg", link: "#", country: "Россия", platform: "Tiktok", followers: "10M+" },
+          { name: "Nkeii", image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT7btRObZeou0DX-RQlGs5SHNd1Pclu8zEPxg&s", link: "#", country: "Беларусь", platform: "Tiktok", followers: "1M+" },
+           { name: "А4", image: "https://yt3.googleusercontent.com/GMJvnLHTiP2KCvomxYnL_dhPtEti9P6YjlaloKn_zQ8N-_vUd1JMi0kXQe2BQLfy1cRQZa-D=s900-c-k-c0x00ffffff-no-rj", link: "#", country: "Беларусь", platform: "YouTube", followers: "50M+" },
+           { name: "Beluqa", image: "https://yt3.googleusercontent.com/nGaGYCEnEzhYCNU2Yw3KDv6cuo-lwd7X92s2TDzrS8J6xTCkj8MxZjSeeod7qpsixU6soA0ZvPw=s900-c-k-c0x00ffffff-no-rj", link: "#", country: "США", platform: "YouTube", followers: "10М+" },
+                      { name: "ISHOWSPEED-", image: "https://i.ytimg.com/vi/iL3tEwrpcv0/oardefault.jpg?sqp=-oaymwEYCJUDENAFSFqQAgHyq4qpAwcIARUAAIhC&rs=AOn4CLBx4L3uOfy2LqRyf_pjEjo_Hd9CyA", link: "#", country: "США", platform: "YouTube", followers: "50М+" },
+                                            { name: "Владус", image: "https://yt3.googleusercontent.com/ytc/AIdro_mV3_PymuORabLAEQV0R7Qja72NyHxWaY0PCRGoLA9fhEM=s900-c-k-c0x00ffffff-no-rj", link: "#", country: "Россия", platform: "YouTube", followers: "5М+" },
+
+
+  ];
+
+  const recommendedBloggers = [
+    { name: "Компот", image: "https://yt3.googleusercontent.com/bOzyEMiNoDBHqtbesGyMfv3es4wX3-X8WdxALV4un2PmgK_chc-RgHkEB35lClNBc4tLB1mPIA=s900-c-k-c0x00ffffff-no-rj", link: "#", country: "Россия", platform: "YouTube", followers: "10M+" },
+    { name: "Фиксплей", image: "https://yt3.googleusercontent.com/ytc/AIdro_m3TSmcO8Fkg-260WxA4bZL9G3HGqZOhOFFU3nj9abj41g=s900-c-k-c0x00ffffff-no-rj", link: "#", country: "Россия", platform: "YouTube", followers: "5M+" },
+    { name: "Лололошка", image: "https://yt3.googleusercontent.com/ytc/AIdro_m5dTgJ2OOoH_W7hl88vS-XXUCURS8F14jurLeJDW8mwKM=s900-c-k-c0x00ffffff-no-rj", link: "#", country: "Россия", platform: "YouTube", followers: "6M+" },
+    { name: "Градус", image: "https://yt3.googleusercontent.com/oNjZGO8alKIcU77cITZ1KNeVlKLTZfZqkx3vk1lfwulivYdk_ZoNjVHShNPH8tYfWhpVsBg6=s900-c-k-c0x00ffffff-no-rj", link: "#", country: "Россия", platform: "YouTube", followers: "1M+" },
+    { name: "Райм", image: "https://yt3.googleusercontent.com/ytc/AIdro_mrhN3DwzPgadOTHVhXt-jB4r6ZKdw9SuuJDdqOQON1GBY=s900-c-k-c0x00ffffff-no-rj", link: "#", country: "Россия", platform: "YouTube", followers: "2M+" },
+    { name: "Юни", image: "https://yt3.googleusercontent.com/Sd2RWZ7fQQDmwgtdPkuhgufT-PGHQ8l1wjQL_UTiZ-whlbSQjW1DMo_laFIEZXf0_YBKABzY=s900-c-k-c0x00ffffff-no-rj", link: "#", country: "Россия", platform: "YouTube", followers: "1M+" },
+    { name: "Вазачка", image: "https://yt3.googleusercontent.com/hi_Xx33wtq1txj4n9s_oginebZgkIgi7GNW8EeyW-we4KqxMGb7r2zy9tzIwhBTlqA8F6KpU1Q=s900-c-k-c0x00ffffff-no-rj", link: "#", country: "Россия", platform: "YouTube", followers: "500K+" },
+    { name: "Домер", image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR_Sh4bOa-w2PtMDMhl7sMftPfu96q1KCZ0hA&s", link: "#", country: "Россия", platform: "YouTube", followers: "4M+" },
+    { name: "Евген Бро", image: "https://yt3.googleusercontent.com/BjZk7mUS00oD0r3_wAsV0JRQGxMBIOiMXT1oqXUENW38O4OtUsj6WnZYGzKpw_UJ3aaJOegOGA=s900-c-k-c0x00ffffff-no-rj", link: "#", country: "Россия", platform: "YouTube", followers: "6M+" },
+    { name: "Найсик Бро", image: "https://yt3.googleusercontent.com/_6oeWK6z6OQYYuNijCgCLbXLfndi0vz64g4Y_jPqCvul3OQvnkEzHz_otIYUfZJZLqvQxLMlgw=s900-c-k-c0x00ffffff-no-rj", link: "#", country: "Россия", platform: "YouTube", followers: "1M+" },
+    { name: "Фласочка", image: "https://yt3.googleusercontent.com/HObs7DZeRXJ9SAn5vAL06YW-CDQ_Spu2rmsTc2HqKrVt0VDPSK4S9iPUacQrbq1H33ricTuV7Q=s900-c-k-c0x00ffffff-no-rj", link: "#", country: "Россия", platform: "YouTube", followers: "100K+" },
+    { name: "Фласка", image: "https://yt3.googleusercontent.com/ytc/AIdro_lPpCsa58BRw3ui62-jKyisnY-fWuwsLsccsIKf7R2yEIg=s900-c-k-c0x00ffffff-no-rj", link: "#", country: "Россия", platform: "YouTube", followers: "1.5M+" },
+    { name: "Скретч", image: "https://yt3.googleusercontent.com/ytc/AIdro_nPZuEvcz1V24cQKod7-e-QMM4WVdnWSEx_WYW6-w9BPjM=s900-c-k-c0x00ffffff-no-rj", link: "#", country: "Россия", platform: "YouTube", followers: "3M+" },
+    { name: "Руня", image: "https://yt3.googleusercontent.com/OJPCvbVHU86j_mJAtazs1viDSMbeg74kv14-ohFnRg9yPv5G7YU_oefH2aD1KMqf73R57nC6ng=s900-c-k-c0x00ffffff-no-rj", link: "#", country: "Россия", platform: "YouTube", followers: "1.2M+" },
+    { name: "Саня", image: "https://yt3.googleusercontent.com/uOy6e-eKPfpbdUrkk_LEXT0lqskPQoZ4r6Dd0WCGzyB602PJnV84v31T8C4vC1zS8YoSCh8q=s900-c-k-c0x00ffffff-no-rj", link: "#", country: "Россия", platform: "YouTube", followers: "800K+" },
+    { name: "Акакий", image: "https://yt3.googleusercontent.com/ytc/AIdro_n0zBF61i2JCNmZt5oP8NDRCI--5eKJwb7aYpqUFaY1Chs=s900-c-k-c0x00ffffff-no-rj", link: "#", country: "Россия", platform: "YouTube", followers: "2.5M+" },
+    { name: "Фиксай", image: "https://sun1-86.userapi.com/s/v1/ig2/0X8TrloZbEYLxYo624X_-xePSnK9Bd9qraqN2-O7zH7GBYXMnv-BO7TMeLfBmFs1993yszSnJ1lzGmmSu4gxRpmi.jpg?quality=95&crop=0,0,400,400&as=32x32,48x48,72x72,108x108,160x160,240x240,360x360&ava=1&cs=240x240", link: "#", country: "Россия", platform: "YouTube", followers: "5M+" },
+    { name: "Роменский", image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTtnOhdgJNKcUfMW5fJy8YZfr6KErHQ0i-jYA&s", link: "#", country: "Россия", platform: "YouTube", followers: "900K+" },
+    { name: "Никита Берг", image: "https://yt3.googleusercontent.com/fa1UFruMcoISmrWA62-OJWXVHqJohtW8D9V0L38drlXjX-YS19bGRNXtm6CoPHczcgTwZgoVGw=s900-c-k-c0x00ffffff-no-rj", link: "#", country: "Россия", platform: "YouTube", followers: "1.1M+" },
+    { name: "Эдисон", image: "https://yt3.googleusercontent.com/ytc/AIdro_lybHsxsggorI4CZ4h9VOgHMa5R9P4-5ewOhl7crh49zVg=s900-c-k-c0x00ffffff-no-rj", link: "#", country: "Россия", platform: "YouTube", followers: "7M+" },
+
+    // 💥 Новые блогеры
+    { name: "Анука-Давайка", image: "https://yt3.googleusercontent.com/ytc/AIdro_ldqMhfHUaqIJumceAB6HK4keZTPyF2SJ80UtYl7Ybrp0E=s900-c-k-c0x00ffffff-no-rj", link: "#", country: "Россия", platform: "YouTube", followers: "700K+" },
+    { name: "Зени", image: "https://yt3.googleusercontent.com/PqhPt-JCjB8NEQpGmcMSFm9oxZTj2NUGrCDQmdEJMpRicIU_oKMfeDQgol_KqBaOhCMVlVus=s900-c-k-c0x00ffffff-no-rj", link: "#", country: "Россия", platform: "YouTube", followers: "300K+" },
+    { name: "MrBeast", image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTaTPib8RqbXf95na9RH5Hkas8zuKG1XM-QCg&s", link: "#", country: "США", platform: "YouTube", followers: "290M+" },
+    { name: "Познователь", image: "https://upload.wikimedia.org/wikipedia/ru/6/65/%D0%9F%D0%BE%D0%B7%D0%BD%D0%B0%D0%B2%D0%B0%D1%82%D0%B5%D0%BB%D1%8C.jpg", link: "#", country: "Россия", platform: "YouTube", followers: "1.5M+" },
+    { name: "Dream-", image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQNOSNzuPNB9PVvOVQS9WQfYmQaW7P9bgcjyQ&s", link: "#", country: "США", platform: "YouTube", followers: "32M+" },
+    { name: "Севенишка", image: "https://yt3.googleusercontent.com/hjB6ChgXr6P2Fi-9wECGanlXRUPgWFWE0amSAstbV6-Kl9E9ZrtuCz2-XAuQITucQMFSpcg5iA=s160-c-k-c0x00ffffff-no-rj", link: "#", country: "Россия", platform: "YouTube", followers: "400K+" },
+    { name: "Хэппи", image: "https://yt3.googleusercontent.com/b3M9-sPVc1P2qluLv6Cai96gpOct9lelMMGIabHQdA_tps5_W5y6nm3gyB82eTWwSyEibJg2sbs=s900-c-k-c0x00ffffff-no-rj", link: "#", country: "Россия", platform: "YouTube", followers: "600K+" },
+    { name: "Марьяна Ро", image: "https://upload.wikimedia.org/wikipedia/commons/f/f8/%D0%9C%D0%B0%D1%80%D1%8C%D1%8F%D0%BD%D0%B0_%D0%A0%D0%BE_%D0%BD%D0%B0_%D0%92%D0%B8%D0%B4%D1%84%D0%B5%D1%81%D1%82_2016_%D0%B2_%D0%A1%D0%9F%D0%B1.jpg", link: "#", country: "Украина", platform: "YouTube", followers: "1М+" },
+     { name: "Кабан", image: "https://yt3.googleusercontent.com/ytc/AIdro_kc5k5q98ubDKQ0YWmCRIFYT-cURHmW3j1M2J-ULOJpAao=s900-c-k-c0x00ffffff-no-rj", link: "#", country: "Россия", platform: "YouTube", followers: "1М+" },
+          { name: "MrDekart", image: "https://yt3.googleusercontent.com/ytc/AIdro_m6w9GJrsvgqRpezH_vk4CgD9XxjbPwEpE0QRLwWHuGEYs=s900-c-k-c0x00ffffff-no-rj", link: "#", country: "Россия", platform: "YouTube", followers: "1М+" },
+                    { name: "Пятёрка", image: "https://yt3.googleusercontent.com/ytc/AIdro_lKd0FsVUwJ2fwOzY7nLdxj02WyjJuLMWTuUUurCx2eDxY=s900-c-k-c0x00ffffff-no-rj", link: "#", country: "Россия", platform: "YouTube", followers: "1М+" },
+                    { name: "Поззи", image: "https://yt3.googleusercontent.com/oofZCrRxdjbJz7FW2_N3XbNh9ADl8xFvb9lbAQ1tag1kjMTWUQXIrcv0jtJC476i8tj1mlYafQ=s900-c-k-c0x00ffffff-no-rj", link: "#", country: "Россия", platform: "YouTube", followers: "10М+" },
+                    { name: "Робзи", image: "https://yt3.googleusercontent.com/5fz0XvY45xKBtIMWbKPvGFeuUIuUGF6bxnvvm6L1HVb79ey-QT-NFxENAcc4Xh6Hf_eZNK8Xog=s900-c-k-c0x00ffffff-no-rj", link: "#", country: "Россия", platform: "YouTube", followers: "1М+" },
+                    { name: "FlacJk", image: "https://yt3.googleusercontent.com/ytc/AIdro_mtTDuDhyL2oOwqZn-fKcU69-3hsgtXHH-3YU3rIoXSLuc=s900-c-k-c0x00ffffff-no-rj", link: "#", country: "Россия", platform: "YouTube", followers: "1М+" },
+                                        { name: "Тумка", image: "https://yt3.googleusercontent.com/UbZ1DhgoWCPvExfTvtU193nCpi4xEw-A9YI_gf83Y5eXkvqNH6gR2XRq7gnwyCJXxoiiDy0bHaI=s900-c-k-c0x00ffffff-no-rj", link: "#", country: "Россия", platform: "YouTube", followers: "10М+" },
+                                        { name: "Аид", image: "https://yt3.googleusercontent.com/ytc/AIdro_meTU9Uy-FBAotTE99UMdpBf2b3yrEyPVMbNfFCUk0u_hA=s900-c-k-c0x00ffffff-no-rj", link: "#", country: "Россия", platform: "YouTube", followers: "10М+" },
+                                        { name: "Канал Кейна", image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSb3hhH6YHERNLuY4SmNIj31lmI8VfnnW1fMQ&s", link: "#", country: "Россия", platform: "YouTube", followers: "1М+" },
+                                         { name: "Delvir", image: "https://yt3.googleusercontent.com/hI_RA3oDE6_OUiplsNsPmxWOVdJ9brJ-U12XKPdPUgTK2w4g8Ix6IG6t0-PjCFlxvDpNk_PHIDY=s900-c-k-c0x00ffffff-no-rj", link: "#", country: "Россия", platform: "YouTube", followers: "1М+" },
+                                                                                  { name: "Квинка", image: "https://yt3.googleusercontent.com/PUeaqTRjej-7ZU6CC8cDuSCK2fOOk6TrZFmXja6Aj7hh4azqjHc8wRk-3PAR1HEUsJZ87FdwY6E=s900-c-k-c0x00ffffff-no-rj", link: "#", country: "Россия", platform: "YouTube", followers: "10М+" },
+                                                                                  { name: "Mr.Max", image: "https://yt3.googleusercontent.com/5uyBIy46duPPR18AlaeAMO2UwDpWx0BuRlOYP7IzrWK82lxkXCbX0e2phXgGpE7RjUuJ7A2sUgA=s900-c-k-c0x00ffffff-no-rj", link: "#", country: "UK", platform: "YouTube", followers: "10М+" },
+                                                                                  { name: "Ms.Katy", image: "https://yt3.googleusercontent.com/s9m4SVE1eUmP6-PXA0gCBFf9r4lAqHovnAGWrs1L7My7aEEZPPmIUaszvGbE7bUu0wKU5MVvIQ=s900-c-k-c0x00ffffff-no-rj", link: "#", country: "UK", platform: "YouTube", followers: "10М+" },
+                                                                                   { name: "Херейд", image: "https://yt3.googleusercontent.com/ytc/AIdro_khcJgXk4DxtWUHHuP_d_kEu5VTG4nJrdAT7oZqGX5fFKg=s900-c-k-c0x00ffffff-no-rj", link: "#", country: "Россия", platform: "Youtube", followers: "1М+" },
+                                                                                    { name: "ZeeMan", image: "https://yt3.googleusercontent.com/Qh4GAyZVK_NQtjDHTodgQqlgJuYIDG2Pm0lbFC1iVfhX9t985MWg9On1IMbpjNKwPGJQKHrmTx8=s900-c-k-c0x00ffffff-no-rj", link: "#", country: "Россия", platform: "Youtube", followers: "1М+" },
+                                                                                      { name: "Иванчелам", image: "https://yt3.googleusercontent.com/ytc/AIdro_lXPq1byk5FYV9Gqol9AxTpWJmFtDsoXoCUjiHkDW3o9Ao=s900-c-k-c0x00ffffff-no-rj", link: "#", country: "Россия", platform: "Youtube", followers: "1М+" },
+                                                                                       { name: "Натаха", image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRkR8rNyvJDG3Zmu18Q-6BA9bKkdPptIQ_TQw&s", link: "#", country: "Россия", platform: "Youtube", followers: "1М+" },
+                                                                                       { name: "AlexCrish", image: "https://yt3.googleusercontent.com/ytc/AIdro_n4MEKCNn0h15FhHrrP7ToFMJylPcAGAh8ppr34vvdjdpQ=s900-c-k-c0x00ffffff-no-rj", link: "#", country: "Молдавия", platform: "Youtube", followers: "1М+" },
+                                                                                        { name: "ShadowPriestok", image: "https://yt3.googleusercontent.com/ytc/AIdro_lvyEIN4EKl-fNhSBtculvLXdFIaInbp-XsmEEVpzJISXo=s900-c-k-c0x00ffffff-no-rj", link: "#", country: "Россия", platform: "Youtube", followers: "1М+" },
+                                                                                         { name: "Добрый", image: "https://yt3.googleusercontent.com/oARMqs2b-6l--secerQTkriF9K6SGqbmtr1UbKCgImiebMrav4F3mrpj53iLKa0kQHeGYbMn4Sg=s900-c-k-c0x00ffffff-no-rj", link: "#", country: "Россия", platform: "Youtube", followers: "1М+" },
+                                                                                         { name: "Red Cat", image: "https://yt3.googleusercontent.com/aa1jCICKY6wrwVqmbtYvKL-EfDM3uq8eEFkboFmMJw9Z_9paa7JRb98y3mZc1qxPgO689Y8LP4E=s900-c-k-c0x00ffffff-no-rj", link: "#", country: "Россия", platform: "Youtube", followers: "1М+" },
+                                                                                         { name: "PandoraGames", image: "https://yt3.googleusercontent.com/mUiI7rIsvXonUG9gfvcVNGlPLUiSWOdyzvm9GTksOHmhA0Andy8UDpKbkw5vVxj_ArRlXZPuyQ=s900-c-k-c0x00ffffff-no-rj", link: "#", country: "Россия", platform: "Youtube", followers: "1М+" },
+                                                                                         { name: "Сенчоус", image: "https://yt3.googleusercontent.com/p3vb0erVfX2mPYWo7crwa73GzH-9NmyG__MhXXEe-VmFXfl0eF1lxnEX2292CkUxMo1P03NQ0w=s900-c-k-c0x00ffffff-no-rj", link: "#", country: "Россия", platform: "Youtube", followers: "1М+" },
+                                                                                         { name: "Зесь", image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSDux2xxOrY8h73lcUgwYsBxSkkPljWWqeHmA&s", link: "#", country: "Россия", platform: "Youtube", followers: "1М+" },
+                                                                                         { name: "iitstaisia", image: "https://yt3.googleusercontent.com/dQgaOiWWwELKqxwz5Di9FfxcEr_K33qFVGrk0zgrJ6Co2G1TIV25mg8n-CQMkkSdMQqvWKGw=s160-c-k-c0x00ffffff-no-rj", link: "#", country: "Россия", platform: "Youtube", followers: "10К+" },
+                                                                                         { name: "Сухарик", image: "https://yt3.googleusercontent.com/IxNMQh5Rt5BKtAxRy4CVHF9v3bdV0UpymvmnkJO_M8_uEEjALYGf9xXdWvd0dvzxokHoKduL-to=s160-c-k-c0x00ffffff-no-rj", link: "#", country: "Россия", platform: "Youtube", followers: "10К+" },
+                                                                                         { name: "Craftic bro", image: "https://yt3.googleusercontent.com/gZWX790JrxHkGnjk6ZWFFDQi7NgGAmoQAt_O83cQxFzPHaH1rRJJH3AnYk8USbUdh06318KJ=s160-c-k-c0x00ffffff-no-rj", link: "#", country: "Россия", platform: "Youtube", followers: "10К+" },
+                                                                                         { name: "LAVINIA", image: "https://yt3.googleusercontent.com/MnpSeCW_OSyfDl8Tfff-LV88s_PorP0lhLTu_ooUearDw5m6R4qwvJ7Rb-6YqdiByNX-tuzF1pQ=s160-c-k-c0x00ffffff-no-rj", link: "#", country: "Россия", platform: "Youtube", followers: "100К+" },
+                                                                                         { name: "Betsy", image: "https://yt3.googleusercontent.com/4dSa4g4aszq7zSCzbdamlrTKigm3jKPdVrM6WiHm2GI5Ij-oiXX473iNmEGOCXAFSjjW5HAt=s900-c-k-c0x00ffffff-no-rj", link: "#", country: "Россия", platform: "Youtube", followers: "10M+" },
+                                                                                         { name: "Мария Янковская", image: "https://uznayvse.ru/images/catalog/2025/2/24/maria-yankovskaia_847.jpg", link: "#", country: "Россия", platform: "Youtube", followers: "10M+" },
+                                                                                         { name: "Domi-Show", image: "https://yt3.googleusercontent.com/Q7KlGKJGt_fUOo1LuLqsiwj15roe0vCQNH4FoQMlwWehIx_8R4GofOO5ZO7vpvevwI6iy2Fh=s176-c-k-c0x00ffffff-no-rj-mo", link: "#", country: "Россия", platform: "Youtube", followers: "1M+" },
+                                                                                         { name: "TDBricks-", image: "https://yt3.googleusercontent.com/wId9tbunBZJlgP3tJ7xsiN-2YRsMTHqXoTQuzzXhN5e6OuKXAaKMZ3tI-X-9TAcJbFK8RLhvGQ=s900-c-k-c0x00ffffff-no-rj", link: "#", country: "США", platform: "Youtube", followers: "1M+" },
+                                                                                         { name: "Глент", image: "https://yt3.googleusercontent.com/BxR0PQLXkZlb1k5nxzxBsFQ742wGdz7T3s_QlnGTqKe0MK9xROdB1aKo2SV_7bCslGGPCANzmBc=s900-c-k-c0x00ffffff-no-rj", link: "#", country: "Беларусь", platform: "Youtube", followers: "10M+" },
+                                                                                         { name: "Кобяков", image: "https://yt3.googleusercontent.com/SR2An6HY0q3NhWhyFgDJftnxjBgeJLvZcHLSBf5AzaZZI4h2WR4RKhj54wTTvMKol1SleOYC=s900-c-k-c0x00ffffff-no-rj", link: "#", country: "Беларусь", platform: "Youtube", followers: "10M+" },
+                                                                                         { name: "Токсис", image: "https://upload.wikimedia.org/wikipedia/commons/7/7b/Toxis_%D0%BD%D0%B0_%D0%A2-%D0%94%D0%B2%D0%BE%D1%80_2025_%285%29_%28cropped%29.jpg", link: "#", country: "Россия", platform: "Tiktok", followers: "10M+" },
+                                                                                         { name: "Юля Гаврилина-", image: "https://24smi.org/public/media/celebrity/2023/09/27/duk46uhcek3p-iulia-gavrilina.jpg", link: "#", country: "Россия", platform: "Tiktok", followers: "10M+" },
+                                                                                         { name: "Клава Кока-", image: "https://interesnyefakty.org/wp-content/uploads/klava-koka.jpg", link: "#", country: "Россия", platform: "Tiktok", followers: "10M+" },
+                                                                                         { name: "Doctor Nowhere", image: "https://yt3.googleusercontent.com/L1SRm_yxf7nXyPKVHXDHjD0VmIVxcbVt6xNgQf_Ye23L6LyVp8JNSabF5UcVArHICATNEwp_=s900-c-k-c0x00ffffff-no-rj", link: "#", country: "США", platform: "YouTube", followers: "100K+" },
+                                                                                         { name: "One Two", image: "https://yt3.googleusercontent.com/ytc/AIdro_kkYKpC-P8upOa1u4_2QTVT_lyKdur2vwZKMdZ3lKfNVko=s900-c-k-c0x00ffffff-no-rj", link: "#", country: "Россия", platform: "Youtube", followers: "1M+" },
+                                                                                         { name: "Sammy-Roblox", image: "https://yt3.googleusercontent.com/WTLKeiIOQHha2iAUfk6aeg7_fz6Iy50u0YHnuHfCbrvqpp4MYdNCoqODBwJlMvqrFH7nPdqn=s900-c-k-c0x00ffffff-no-rj", link: "#", country: "США", platform: "Youtube", followers: "1M+" },
+                                                                                         { name: "Фокснеснео", image: "https://yt3.googleusercontent.com/ytc/AIdro_lX5JvS_aGBM1q8cNk1iTtfMS_uNhD5lx2M6AV7OWSpSN4=s900-c-k-c0x00ffffff-no-rj", link: "#", country: "Россия", platform: "Youtube", followers: "1M+" },
+                                                                                         { name: "DakPlay", image: "https://yt3.googleusercontent.com/ytc/AIdro_klB0VRKpsHRek2sUGXyeSVi7JMNNeiqumSUIAbD4nJlrg=s900-c-k-c0x00ffffff-no-rj", link: "#", country: "Россия", platform: "Youtube", followers: "1M+" },
+                                                                                         { name: "Windy31", image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRzfV7J8zbsYEokPOs0WtzcDPRw67sjjCbH8Q&s", link: "#", country: "Россия", platform: "Youtube", followers: "1M+" },
+                                                                                         { name: "Kuplinov Play", image: "https://yt3.googleusercontent.com/ytc/AIdro_nHvLKFELNW-4nDDyyaNwhUTBdPK_s0fs0mwik4Bte9jd8=s900-c-k-c0x00ffffff-no-rj", link: "#", country: "Россия", platform: "Youtube", followers: "1M+" },
+                                                                                         { name: "Frost", image: "https://yt3.googleusercontent.com/ytc/AIdro_msZTWHeLMrJBA-aRm9L7h_xFgGUoxwQbfJrajnnWkBtKo=s900-c-k-c0x00ffffff-no-rj", link: "#", country: "Россия", platform: "Youtube", followers: "1M+" },
+                                                                                         { name: "Kate Clapp", image: "https://upload.wikimedia.org/wikipedia/commons/d/d7/%D0%9A%D0%B0%D1%82%D1%8F_%D0%9A%D0%BB%D1%8D%D0%BF_%D0%BD%D0%B0_%D0%92%D0%B8%D0%B4%D1%84%D0%B5%D1%81%D1%82_2016_%D0%B2_%D0%9C%D0%BE%D1%81%D0%BA%D0%B2%D0%B5_%282%29.jpg", link: "#", country: "Россия", platform: "Insagramm", followers: "1M+" },
+                                                                                         { name: "TheBrianMaps", image: "https://i.pinimg.com/736x/3f/ce/40/3fce40a74e5073de20b57b96383af13a.jpg", link: "#", country: "Россия", platform: "Youtube", followers: "1M+" },
+                                                                                         { name: "Odemian", image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTARtnz-sWq2vEIk1Yx8QVgzaaPCGzT7SFNxg&s", link: "#", country: "Россия", platform: "twich", followers: "1M+" },
+                                                                                         { name: "KreekCraft", image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRmIrKZ5-3-ESaKuIPBBe-e4y9y9RXfLqNKaA&s", link: "#", country: "США", platform: "twich", followers: "1M+" },
+                                                                                         { name: "Brox", image: "https://yt3.googleusercontent.com/oIeJP-_u3Ns5oGwkSu7_whu6-5SbHPTe1Ie7UNOG4pjk4hI4J8fp0I3-OkgL415StU4YjMhvHQ=s900-c-k-c0x00ffffff-no-rj", link: "#", country: "Россия", platform: "Youtube", followers: "1M+" },
+                                                                                        { name: "Yulik", image: "https://images.genius.com/5c1adeccf7aae0170d057b5a9070893d.691x691x1.jpg", link: "#", country: "Россия", platform: "Youtube", followers: "1M+" },
+                                                                                        { name: "Flamingo", image: "https://yt3.googleusercontent.com/7cF22TRiceqQr2Cro_X4uhRVnwCdOa2HXiwdBGPnUEqJDuCyr2CykDfDw2rCWjbjaHEdTMUC=s900-c-k-c0x00ffffff-no-rj", link: "#", country: "Россия", platform: "Youtube", followers: "1M+" },
+                                                                                        { name: "PIROGOVA", image: "https://yt3.googleusercontent.com/K3HRAsNO8l98QvFRm8sRnLVAsslYuOCbD5V32mz2u1B67n-XKmeTwAgvHZmgQ0VGnyXuTo_peA=s900-c-k-c0x00ffffff-no-rj", link: "#", country: "Россия", platform: "Youtube", followers: "100K+" },
+                                                                                        { name: "BRISE", image: "https://yt3.googleusercontent.com/it5HRJLJbTY--GhStPollnrwsiAlQ0T456KoJAcdiJwDNLqRKIrdzdnhLnBGDyk84VNlqoqc=s900-c-k-c0x00ffffff-no-rj", link: "#", country: "Россия", platform: "Youtube", followers: "100K+" },
+                                                                                        { name: "Holy Baam", image: "https://yt3.googleusercontent.com/f4_QLeSM2A1yb76hbLW7zmiEmMxo1eNPsyc0pZWUl0uaGkKtAj9kWEoiTPyMNckLp6ZRJIKt=s900-c-k-c0x00ffffff-no-rj", link: "#", country: "Россия", platform: "Youtube", followers: "1M+" },
+                                                                                        { name: "Ladarf Play", image: "https://yt3.googleusercontent.com/Ge2BedeICiQsFpNqKeeKMMx1TOogjCghit8DGyMHGERYe9HlkhbSrc5Q391hdTx3k_o79hS8BQ=s900-c-k-c0x00ffffff-no-rj", link: "#", country: "Россия", platform: "Youtube", followers: "100K+" },
+                                                                                        { name: "Alan Walker", image: "https://i1.sndcdn.com/avatars-000305905911-c0lvdn-t1080x1080.jpg", link: "#", country: "США", platform: "Youtube", followers: "30M+" },
+                                                                                        { name: "Nanndo", image: "https://yt3.googleusercontent.com/oNlLEGCILSWqvbm51MsVrn1vzdwLsQgjNqnDPBgWH-HGcHJp6yN2vFRhyHSjtYHxpp63aWNt=s900-c-k-c0x00ffffff-no-rj", link: "#", country: "Испания", platform: "Youtube", followers: "3M+" },
+                                                                                        { name: "Дима Билан", image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTuj3U9Ua0OiC133zA9P-QfXzXUC9xXwTfhyw&s", link: "#", country: "Россия", platform: "Youtube", followers: "30М+" },
+                                                                                        { name: "Zengi", image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTfRaiSNhM8NPLHqdq4b73h8rJbqDfVBMij6A&s", link: "#", country: "Россия", platform: "Youtube", followers: "300К+" },
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
+  ];
+  const DeaciveBloggers = [
+    ""
+  ];
+
+  function renderBloggers(list, containerId) {
+    const container = document.getElementById(containerId);
+    container.innerHTML = '';
+    list.forEach(blogger => {
+      const card = document.createElement("div");
+      card.className = "blogger-card";
+      card.setAttribute('data-name', blogger.name.toLowerCase());
+      card.innerHTML = `
+        <img src="${blogger.image}" alt="${blogger.name}">
+        <h3><a href="${blogger.link}">${blogger.name}</a></h3>
+        <p>${blogger.country || ''} • ${blogger.platform || ''} • ${blogger.followers || ''}</p>
+        <div class="card-actions">
+          <button class="listen-btn" type="button" data-desc="Это ${blogger.name}. Подписчиков: ${blogger.followers || 'недоступно'}. Платформа: ${blogger.platform || 'недоступно'}">Читать</button>
+          <button class="like-btn">❤️</button>
+          ${blogger.link ? `<a href="${blogger.link}" class="secondary" style="text-decoration:none; display:inline-block; padding:8px 10px; background:#28a745; border-radius:6px; color:#fff;">Перейти</a>` : ''}
+        </div>
+      `;
+      container.appendChild(card);
+    });
+  }
+
+  renderBloggers(popularBloggers, "popular-list");
+  renderBloggers(recommendedBloggers, "recommended-list");
+
+  const searchInput = document.getElementById("search-input");
+  searchInput.addEventListener("input", () => {
+    const query = searchInput.value.toLowerCase();
+    document.querySelectorAll(".blogger-card").forEach(card => {
+      const name = card.getAttribute("data-name") || "";
+      card.style.display = name.includes(query) ? "flex" : "none";
+    });
+
+    const container = document.getElementById("recommended-list");
+    extraBloggers.forEach(name => {
+      if (name.toLowerCase().includes(query)) {
+        if (!container.querySelector(`[data-name='${name.toLowerCase()}']`)) {
+          const card = document.createElement("div");
+          card.className = "blogger-card";
+          card.setAttribute('data-name', name.toLowerCase());
+          card.innerHTML = `
+            <img src="images/placeholder.png" alt="${name}">
+            <h3>${name}</h3>
+            <p>Информация недоступна</p>
+            <div class="card-actions">
+              <button class="like-btn">❤️</button>
+            </div>
+          `;
+          container.appendChild(card);
+        }
+      }
+    });
+  });
+
+  // --- голосовой помощник ---
+  function speakText(text) {
+    if (!("speechSynthesis" in window)) return;
+    const utter = new SpeechSynthesisUtterance(text);
+    utter.lang = "ru-RU";
+    const voices = window.speechSynthesis.getVoices();
+    const ru = voices.find(v => v.lang && v.lang.startsWith('ru'));
+    if (ru) utter.voice = ru;
+    window.speechSynthesis.cancel();
+    window.speechSynthesis.speak(utter);
+  }
+
+  function speakGreeting() {
+    const text = "Привет! Добро пожаловать на Википедию Блогеров и Певцов.";
+    const voices = window.speechSynthesis.getVoices();
+    if (voices.length === 0) {
+      const handler = () => {
+        window.speechSynthesis.removeEventListener('voiceschanged', handler);
+        speakText(text);
+      };
+      window.speechSynthesis.addEventListener('voiceschanged', handler);
+      try { speakText(text); } catch(e){}
+    } else { speakText(text); }
+  }
+
+  document.getElementById("repeat-voice").addEventListener("click", speakGreeting);
+  document.addEventListener("click", e => {
+    const btn = e.target.closest('.listen-btn');
+    if (btn) speakText(btn.dataset.desc || 'Информация недоступна');
+  });
+
+  document.getElementById("toggle-theme").addEventListener("click", () => {
+    document.body.classList.toggle("dark-theme");
+  });
+
+  // === Премиум ===
+  const PREMIUM_KEY = 'premiumUnlocked';
+  function renderPremium() {
+    const container = document.getElementById('premium');
+    if (localStorage.getItem(PREMIUM_KEY) === '1') {
+      container.innerHTML = `
+        <h3>🎉 Доступ открыт!</h3>
+        <p>Спасибо за подписку — здесь находится эксклюзивный контент для подписчиков.</p>
+        <p><strong>Секретная инфа:</strong> контакт, подробная биография и эксклюзивные материалы.</p>
+        <button id="revoke-premium" class="secondary">Отменить доступ (тест)</button>
+      `;
+      document.getElementById('revoke-premium').addEventListener('click', () => {
+        if (confirm('Удалить тестовый доступ?')) {
+          localStorage.removeItem(PREMIUM_KEY);
+          renderPremium();
+        }
+      });
+    } else {
+      container.innerHTML = `
+        <h3>WIKI PLUS </h3>
+        <p>Эта информация доступна только для подписчиков 🔒</p>
+        <button id="buy-btn">Купить доступ</button>
+      `;
+      document.getElementById('buy-btn').addEventListener('click', unlockPremium);
+    }
+  }
+
+  function unlockPremium() {
+    if (confirm('Купить доступ за 10$? (симуляция покупки)')) {
+      localStorage.setItem(PREMIUM_KEY, '1');
+      renderPremium();
+      speakText('Спасибо! Доступ открыт.');
+    } else {
+      alert('Покупка отменена.');
+      
+
+    }
+  }
+
+   // === Регистрация и вход ===
+  function registerUser() {
+    const username = document.getElementById("reg-username").value.trim();
+    const password = document.getElementById("reg-password").value.trim();
+
+    if (!username || !password) {
+      alert("Введите логин и пароль!");
+      return;
+    }
+
+    // проверка на существование пользователя
+    const users = JSON.parse(localStorage.getItem("users") || "{}");
+    if (users[username]) {
+      alert("Такой пользователь уже существует!");
+      return;
+    }
+
+    // сохраняем нового пользователя
+    users[username] = { password: password };
+    localStorage.setItem("users", JSON.stringify(users));
+    alert("✅ Регистрация успешна! Теперь войдите.");
+    document.getElementById("reg-username").value = "";
+    document.getElementById("reg-password").value = "";
+  }
+
+  function loginUser() {
+    const username = document.getElementById("login-username").value.trim();
+    const password = document.getElementById("login-password").value.trim();
+
+    if (!username || !password) {
+      alert("Введите логин и пароль!");
+      return;
+    }
+
+    const users = JSON.parse(localStorage.getItem("users") || "{}");
+
+    if (!users[username]) {
+      alert("Пользователь не найден!");
+      return;
+    }
+
+    if (users[username].password !== password) {
+      alert("Неверный пароль!");
+      return;
+    }
+
+    // вход успешен
+    localStorage.setItem("currentUser", username);
+    showProfile(username);
+  }
+
+  function showProfile(username) {
+    document.getElementById("auth-forms").style.display = "none";
+    document.getElementById("profile").style.display = "block";
+    document.getElementById("profile-name").textContent = username;
+  }
+
+  function logoutUser() {
+    localStorage.removeItem("currentUser");
+    document.getElementById("auth-forms").style.display = "block";
+    document.getElementById("profile").style.display = "none";
+  }
+
+  window.addEventListener("load", () => {
+    try { speakGreeting(); } catch(e){}
+    renderPremium();
+
+    const currentUser = localStorage.getItem("currentUser");
+    if (currentUser) {
+      showProfile(currentUser);
+    }
+  });
+// === Панель администратора (WIKI / 12345) ===
+const ADMIN_LOGIN = "WIKI";
+const ADMIN_PASS = "12345";
+
+function openAdminPanel() {
+  // Проверка — если не админ, запретить
+  const currentUser = localStorage.getItem("currentUser");
+  if (currentUser !== ADMIN_LOGIN) {
+    alert("❌ Доступ запрещён! Только для администратора.");
+    return;
+  }
+
+  // Создаём модальное окно панели
+  const adminPanel = document.createElement("div");
+  adminPanel.id = "admin-panel";
+  adminPanel.style.position = "fixed";
+  adminPanel.style.top = "50%";
+  adminPanel.style.left = "50%";
+  adminPanel.style.transform = "translate(-50%, -50%)";
+  adminPanel.style.background = "#fff";
+  adminPanel.style.padding = "20px";
+  adminPanel.style.border = "2px solid #000";
+  adminPanel.style.borderRadius = "10px";
+  adminPanel.style.zIndex = "9999";
+  adminPanel.style.width = "400px";
+  adminPanel.style.maxHeight = "80vh";
+  adminPanel.style.overflowY = "auto";
+
+  adminPanel.innerHTML = `
+    <h2>👑 Панель администратора</h2>
+    <p>Вы вошли как <b>${ADMIN_LOGIN}</b></p>
+    <hr>
+    <button onclick="showUserList()">📋 Посмотреть пользователей</button>
+    <button onclick="addBloggerPrompt()">➕ Добавить блогера</button>
+    <button onclick="clearAllUsers()">🗑 Удалить всех пользователей</button>
+    <hr>
+    <button onclick="closeAdminPanel()" style="background:#dc3545;">Закрыть</button>
+    <div id="admin-output" style="margin-top:15px; font-size:14px;"></div>
+  `;
+
+  document.body.appendChild(adminPanel);
+}
+
+function closeAdminPanel() {
+  const panel = document.getElementById("admin-panel");
+  if (panel) panel.remove();
+}
+
+function showUserList() {
+  const users = JSON.parse(localStorage.getItem("users") || "{}");
+  let out = "<h3>Зарегистрированные пользователи:</h3>";
+  const keys = Object.keys(users);
+  if (keys.length === 0) out += "<p>Нет зарегистрированных пользователей.</p>";
+  else {
+    out += "<ul>" + keys.map(u => `<li>${u}</li>`).join("") + "</ul>";
+  }
+  document.getElementById("admin-output").innerHTML = out;
+}
+
+function clearAllUsers() {
+  if (confirm("Удалить всех пользователей? Это действие необратимо!")) {
+    localStorage.removeItem("users");
+    alert("Все пользователи удалены!");
+  }
+}
+
+function addBloggerPrompt() {
+  const name = prompt("Имя блогера:");
+  const image = prompt("Ссылка на изображение:");
+  const country = prompt("Страна:");
+  const platform = prompt("Платформа (например, YouTube):");
+  const followers = prompt("Подписчиков (например, 1M+):");
+
+  if (!name) {
+    alert("Имя обязательно!");
+    return;
+  }
+
+  // Добавляем блогера прямо на страницу
+  const newBlogger = { name, image, country, platform, followers, link: "#" };
+  recommendedBloggers.push(newBlogger);
+  renderBloggers(recommendedBloggers, "recommended-list");
+  alert("✅ Новый блогер добавлен!");
+}
+
+// === Добавляем кнопку в профиль, если зашёл админ ===
+window.addEventListener("load", () => {
+  const currentUser = localStorage.getItem("currentUser");
+  if (currentUser === ADMIN_LOGIN) {
+    const adminBtn = document.createElement("button");
+    adminBtn.textContent = "👑 Панель администратора";
+    adminBtn.style.background = "#ff9800";
+    adminBtn.style.color = "white";
+    adminBtn.style.marginTop = "10px";
+    adminBtn.style.borderRadius = "6px";
+    adminBtn.onclick = openAdminPanel;
+    document.getElementById("profile").appendChild(adminBtn);
+  }
+
+
+});
+
+</script >
+</body>
+</html>
